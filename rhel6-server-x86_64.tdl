@@ -9,7 +9,18 @@
     <url>http://linuxsoft.cern.ch/enterprise/rhel/server/6/6.6/x86_64/</url>
   </install>
  </os>
+ <repositories>
+  <repository name='epel-6'>
+   <url>http://linuxsoft.cern.ch/epel/6/x86_64</url>
+  </repository>
+  <repository name='rhel-6'>
+   <url>http://linuxsoft.cern.ch/cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/os</url>
+  </repository>
+ </repositories>
  <packages>
+  <package name='cloud-init'/>
+  <package name='cloud-utils'/>
+  <package name='dracut-modules-growroot'/>
   <package name='heat-cfntools'/>
   <package name='virt-what'/>
   <package name='tuned'/>
@@ -28,22 +39,10 @@ exec >>/root/customize.log 2>&amp;1
   <command name='de-contextualize'>
 exec >>/root/customize.log 2>&amp;1
 
-#
-# Install cloud-init and friends
-#
-/usr/bin/yum install cloud-init -y --enablerepo=slc6-rhcommon
-
 if [ -e /etc/cloud/cloud.cfg ]; then
     /bin/sed -i 's|cloud-user|root|' /etc/cloud/cloud.cfg
     /bin/sed -i 's|^disable_root: 1|disable_root: 0|' /etc/cloud/cloud.cfg
-
-# XXXX cloud.cfg is missing the "growpart" module, which has been added in
-# XXXX the "cloud_init_modules" section in cloud-init-0.7.2-5 
-# XXXX https://bugzilla.redhat.com/show_bug.cgi?id=966888
-
 fi
-
-/usr/bin/yum install cloud-utils dracut-modules-growroot -y
 
 #
 # Enable DHCPv6 for eth0
