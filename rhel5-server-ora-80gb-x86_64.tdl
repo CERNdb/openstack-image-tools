@@ -7,15 +7,15 @@
   <version>U11</version>
   <arch>x86_64</arch>
   <install type='url'>
-    <url>http://linuxsoft.cern.ch/enterprise/5Server_U11/en/os/x86_64</url>
+    <url>http://linuxsoft.cern.ch/enterprise/rhel/server/5/5.11/x86_64/</url>
   </install>
  </os>
  <repositories>
   <repository name='epel-5'>
    <url>http://linuxsoft.cern.ch/epel/5/x86_64</url>
   </repository>
-  <repository name='rhel5-updates'>
-   <url>http://linuxsoft.cern.ch/rhel/rhel5server-x86_64/RPMS.updates/</url>
+  <repository name='rhel-5'>
+   <url>http://linuxsoft.cern.ch/cdn.redhat.com/content/dist/rhel/server/5/5Server/x86_64/os</url>
   </repository>
  </repositories>
  <packages>
